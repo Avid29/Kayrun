@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "Kayrun.Windows": {
+      "commandName": "MsixPackage"
+    }
+  }
+}

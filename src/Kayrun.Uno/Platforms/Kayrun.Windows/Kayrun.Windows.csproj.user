@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Source>C:\Users\avid2\Downloads\Full Icon.png</Source>
+    <MediumTileSource>C:\Users\avid2\Downloads\Full Icon.png</MediumTileSource>
+    <WideTileSource>C:\Users\avid2\Downloads\Full Icon.png</WideTileSource>
+    <LargeTileSource>C:\Users\avid2\Downloads\Full Icon.png</LargeTileSource>
+    <SplashScreenSource>C:\Users\avid2\Downloads\Full Icon.png</SplashScreenSource>
+    <SmallTileSource>C:\Users\avid2\Downloads\Main Icon.png</SmallTileSource>
+    <AppIconSource>C:\Users\avid2\Downloads\Main Icon.png</AppIconSource>
+    <PackageLogoSource>C:\Users\avid2\Downloads\Main Icon.png</PackageLogoSource>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Update="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+</Project>
