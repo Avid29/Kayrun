@@ -30,5 +30,11 @@ namespace Kayrun.Services.StorageService
         /// <param name="filename">The name of the file.</param>
         /// <param name="data">The data to save.</param>
         public Task SaveAsync<T>(string filename, T data);
+
+        /// <summary>
+        /// Gets the list of folders name in a relative path.
+        /// </summary>
+        /// <param name="path">The path of the folder.</param>
+        public Task<string[]> GetFolders(string path);
     }
 }

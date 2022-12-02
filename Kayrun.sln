@@ -194,6 +194,7 @@ Global
 		src\Kayrun.Uno\Kayrun.Shared\Kayrun.Shared.projitems*{4d44592c-5b1c-48f4-93fa-3ee25097b1aa}*SharedItemsImports = 5
 		src\Kayrun.Uno\Kayrun.Shared\Kayrun.Shared.projitems*{6279c845-92f8-4333-ab99-3d213163593c}*SharedItemsImports = 13
 		src\Kayrun.Uno\Kayrun.Shared\Kayrun.Shared.projitems*{7335d0d9-1a22-4c63-8f65-5201aff91392}*SharedItemsImports = 5
+		src\Kayrun.Uno\Kayrun.Shared\Kayrun.Shared.projitems*{96a18a64-aa80-4ba2-bfb9-89e4866d30fc}*SharedItemsImports = 5
 		src\Kayrun.Uno\Kayrun.Shared\Kayrun.Shared.projitems*{9b720d34-98a5-4c98-a41f-e04cff57f9ab}*SharedItemsImports = 5
 		src\Kayrun.Uno\Kayrun.Shared\Kayrun.Shared.projitems*{f29ae688-0f6c-46a5-9adf-75571acff113}*SharedItemsImports = 5
 	EndGlobalSection

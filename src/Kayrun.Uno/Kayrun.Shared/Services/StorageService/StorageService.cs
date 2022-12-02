@@ -2,6 +2,7 @@
 
 using System;
 using System.IO;
+using System.Linq;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
@@ -59,6 +60,15 @@ namespace Kayrun.Services.StorageService
             {
                 return;
             }
+        }
+
+        /// <inheritdoc/>
+        public async Task<string[]> GetFolders(string path = "")
+        {
+            // Opens and deserializes the file, then closes it
+            var folder = await _storageFolder.GetFolderAsync(path);
+            var folders = await folder.GetFoldersAsync();
+            return folders.Select(x => x.Name).ToArray();
         }
     }
 }

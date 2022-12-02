@@ -5,7 +5,7 @@ using Kayrun.API.Models.Keys;
 using Kayrun.Client.Enums;
 using Kayrun.Client.Helpers;
 using Kayrun.Client.RSA;
-using Kayrun.ViewModels.Services.StorageService;
+using Kayrun.Services.StorageService;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -112,7 +112,7 @@ namespace Kayrun.Services.KeyStorageService
             where T : KeyEntry
         {
             // Check file existence
-            if (!_storageService.HasFile(filename)) return Error.MissingKey;
+            if (!await _storageService.HasFile(filename)) return Error.MissingKey;
 
             // Check that the entry was properly deserialized
             var entry = await _storageService.LoadAsync<T>(filename);

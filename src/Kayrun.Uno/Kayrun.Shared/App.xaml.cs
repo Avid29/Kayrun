@@ -1,10 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Diagnostics;
+using Kayrun.Controls.Host;
+using Microsoft.Extensions.Logging;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
 
 namespace Kayrun
 {
@@ -13,7 +13,7 @@ namespace Kayrun
     /// </summary>
     public sealed partial class App : Application
     {
-        private Window _window;
+        private Window? _window;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -22,6 +22,7 @@ namespace Kayrun
         public App()
         {
             InitializeLogging();
+            Services = ConfigureServices();
 
             this.InitializeComponent();
 
@@ -29,6 +30,16 @@ namespace Kayrun
             this.Suspending += OnSuspending;
 #endif
         }
+
+        /// <summary>
+        /// Gets the current <see cref="App"/> instance in use.
+        /// </summary>
+        public new static App Current => (App)Application.Current;
+
+        /// <summary>
+        /// Gets the <see cref="IServiceProvider"/> instance to resolve application services
+        /// </summary>
+        public IServiceProvider Services { get; }
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -48,40 +59,17 @@ namespace Kayrun
             _window = new Window();
             _window.Activate();
 #else
-            _window = Microsoft.UI.Xaml.Window.Current;
+            _window = Window.Current;
 #endif
-
-            var rootFrame = _window.Content as Frame;
-
-            // Do not repeat app initialization when the Window already has content,
-            // just ensure that the window is active
-            if (rootFrame == null)
+            if (_window.Content is not WindowHost)
             {
-                // Create a Frame to act as the navigation context and navigate to the first page
-                rootFrame = new Frame();
-
-                rootFrame.NavigationFailed += OnNavigationFailed;
-
-                if (args.UWPLaunchActivatedEventArgs.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {
-                    // TODO: Load state from previously suspended application
-                }
-
-                // Place the frame in the current Window
-                _window.Content = rootFrame;
+                InitializeUI();
             }
 
 #if !(NET6_0_OR_GREATER && WINDOWS)
             if (args.UWPLaunchActivatedEventArgs.PrelaunchActivated == false)
 #endif
             {
-                if (rootFrame.Content == null)
-                {
-                    // When the navigation stack isn't restored navigate to the first page,
-                    // configuring the new page by passing required information as a navigation
-                    // parameter
-                    rootFrame.Navigate(typeof(MainPage), args.Arguments);
-                }
                 // Ensure the current window is active
                 _window.Activate();
             }
@@ -177,6 +165,18 @@ namespace Kayrun
 #if HAS_UNO
             global::Uno.UI.Adapter.Microsoft.Extensions.Logging.LoggingAdapter.Initialize();
 #endif
+#endif
+        }
+
+        private void InitializeUI()
+        {
+            Guard.IsNotNull(_window);
+
+            FrameworkElement root = new WindowHost();
+            _window.Content = root;
+
+#if !HAS_UNO
+            root.FlowDirection = FlowDirection.LeftToRight;
 #endif
         }
     }
