@@ -61,8 +61,9 @@ namespace Kayrun.ViewModels.Host
 
                 // Generate and store a key pair
                 // TODO: Key size settings option
-                var pair = KeyPair.GenerateKeyPair(2048);
+                var pair = KeyPair.GenerateKeyPair(1024);
                 await _keyStorageService.StoreKeyPair(pair);
+                await _keyStorageService.AssociateToPrivateKey(email);
 
                 // Upload the key to the server
                 await _messengerService.UploadKey(email);
