@@ -36,6 +36,11 @@
 	<ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnablePreviewMsixTooling)'=='true'">
 		<ProjectCapability Include="Msix" />
 	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\Kayrun.API\Kayrun.API.csproj" />
+	  <ProjectReference Include="..\..\..\Kayrun.Client\Kayrun.Client.csproj" />
+	  <ProjectReference Include="..\..\..\Kayrun.ViewModels\Kayrun.ViewModels.csproj" />
+	</ItemGroup>
 	
 	<ItemGroup>
 		<!--
