@@ -4,6 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <NoWarn>NU1701</NoWarn>
 		<WasmPWAManifestFile>manifest.json</WasmPWAManifestFile>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <MonoRuntimeDebuggerEnabled>true</MonoRuntimeDebuggerEnabled>
@@ -50,6 +51,11 @@
     <PackageReference Include="Uno.Wasm.Bootstrap" Version="7.0.3" />
     <PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="7.0.3" />
     <PackageReference Include="Uno.WinUI.Lottie" Version="4.6.19" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Kayrun.API\Kayrun.API.csproj" />
+    <ProjectReference Include="..\..\..\Kayrun.Client\Kayrun.Client.csproj" />
+    <ProjectReference Include="..\..\..\Kayrun.ViewModels\Kayrun.ViewModels.csproj" />
   </ItemGroup>
   <Import Project="..\..\Kayrun.Shared\Kayrun.Shared.projitems" Label="Shared" Condition="Exists('..\..\Kayrun.Shared\Kayrun.Shared.projitems')" />
 </Project>

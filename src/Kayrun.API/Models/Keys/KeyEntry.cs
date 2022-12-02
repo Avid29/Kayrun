@@ -20,6 +20,14 @@ namespace Kayrun.API.Models.Keys
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="KeyEntry"/> class.
+        /// </summary>
+        public KeyEntry(string key)
+        {
+            Key = key;
+        }
+
+        /// <summary>
         /// Gets or sets the email this key associates with.
         /// </summary>
         [JsonPropertyName("email")]

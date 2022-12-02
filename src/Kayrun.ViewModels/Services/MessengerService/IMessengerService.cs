@@ -17,14 +17,14 @@ namespace Kayrun.ViewModels.Services.MessengerService
         /// </summary>
         /// <param name="email">The email to get the associated key for.</param>
         /// <returns>The requested key entry, if available.</returns>
-        Task<RoE<KeyEntry, Error>> GetKey(string email);
+        Task<RoE<KeyEntry, Error>> DownloadKey(string email);
 
         /// <summary>
         /// Sets the key for an email on the messaging server.
         /// </summary>
         /// <param name="email">The email the key is associated with.</param>
         /// <returns><see cref="Error.None"/> on success, or an error value if failed.</returns>
-        Task<Error> SetKey(string email);
+        Task<Error> UploadKey(string email);
 
         /// <summary>
         /// Gets a message from the messaging server.

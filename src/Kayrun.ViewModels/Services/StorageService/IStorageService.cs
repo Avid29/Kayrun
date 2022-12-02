@@ -14,7 +14,7 @@ namespace Kayrun.ViewModels.Services.StorageService
         /// </summary>
         /// <param name="filename">The name of the file.</param>
         /// <returns>True if the file exists, false otherwise.</returns>
-        public bool HasFile(string filename);
+        public Task<bool> HasFile(string filename);
 
         /// <summary>
         /// Loads data from a file.
