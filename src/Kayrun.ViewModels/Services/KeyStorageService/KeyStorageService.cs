@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Kayrun.Services.KeyStorageService
 {
     /// <summary>
-    /// An implementation of the <see cref="IKeyStorageService"/>.
+    /// An implementation of the <see cref="IKeyStorage"/>.
     /// </summary>
     public class KeyStorageService : IKeyStorage
     {

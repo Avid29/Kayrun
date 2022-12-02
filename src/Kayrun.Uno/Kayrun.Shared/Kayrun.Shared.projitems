@@ -23,7 +23,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Host\WindowHost.xaml.cs">
       <DependentUpon>WindowHost.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\Panels\ChannelPanel.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Panels\ChatsPanel.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Panels\MessagePanel.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Shell\Shell.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\StorageService\StorageService.cs" />
   </ItemGroup>
@@ -36,7 +37,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Controls\Panels\ChannelPanel.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Controls\Panels\ChatsPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\Panels\MessagePanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

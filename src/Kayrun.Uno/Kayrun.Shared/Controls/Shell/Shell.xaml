@@ -17,9 +17,9 @@
         </Grid.ColumnDefinitions>
 
         <!--Panel-->
-        <panels:ChannelPanel/>
+        <panels:ChatsPanel/>
 
         <!--Content-->
-        <Grid Grid.Column="1" Background="Red"/>
+        <panels:MessagePanel/>
     </Grid>
 </UserControl>

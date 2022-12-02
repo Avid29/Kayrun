@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Text.Unicode;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Storage.Search;
 
 namespace Kayrun.Services.StorageService
 {
@@ -42,6 +43,21 @@ namespace Kayrun.Services.StorageService
             {
                 return false;
             }
+        }
+
+        /// <inheritdoc/>
+        public async Task<string[]> QueryType(string type)
+        {
+            var query = new QueryOptions();
+            query.FileTypeFilter.Add(type);
+            var files = await _storageFolder.CreateFileQueryWithOptions(query).GetFilesAsync();
+            return files.Select(x => x.DisplayName).ToArray();
+        }
+
+        /// <inheritdoc/>
+        public async Task CreateFile(string filename)
+        {
+            await _storageFolder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
         }
 
         /// <inheritdoc/>

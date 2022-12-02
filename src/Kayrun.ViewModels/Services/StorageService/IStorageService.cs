@@ -14,14 +14,26 @@ namespace Kayrun.Services.StorageService
         /// </summary>
         /// <param name="filename">The name of the file.</param>
         /// <returns>True if the file exists, false otherwise.</returns>
-        public Task<bool> HasFile(string filename);
+        Task<bool> HasFile(string filename);
+
+        /// <summary>
+        /// Gets the names of all files in the current directory of type <paramref name="type"/>.
+        /// </summary>
+        /// <param name="type">The type to query for.</param>
+        Task<string[]> QueryType(string type);
+
+        /// <summary>
+        /// Creates a file.
+        /// </summary>
+        /// <param name="filename">The name of the file.</param>
+        Task CreateFile(string filename);
 
         /// <summary>
         /// Loads data from a file.
         /// </summary>
         /// <typeparam name="T">The type of the data to load.</typeparam>
         /// <param name="filename">The name of the file.</param>
-        public Task<T?> LoadAsync<T>(string filename);
+        Task<T?> LoadAsync<T>(string filename);
 
         /// <summary>
         /// Saves data to a file.
@@ -29,12 +41,12 @@ namespace Kayrun.Services.StorageService
         /// <typeparam name="T">The type of data to save.</typeparam>
         /// <param name="filename">The name of the file.</param>
         /// <param name="data">The data to save.</param>
-        public Task SaveAsync<T>(string filename, T data);
+        Task SaveAsync<T>(string filename, T data);
 
         /// <summary>
         /// Gets the list of folders name in a relative path.
         /// </summary>
         /// <param name="path">The path of the folder.</param>
-        public Task<string[]> GetFolders(string path);
+        Task<string[]> GetFolders(string path);
     }
 }
