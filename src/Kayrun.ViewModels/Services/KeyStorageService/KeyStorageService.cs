@@ -9,7 +9,7 @@ using Kayrun.ViewModels.Services.StorageService;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Kayrun.ViewModels.Services.KeyStorageService
+namespace Kayrun.Services.KeyStorageService
 {
     /// <summary>
     /// An implementation of the <see cref="IKeyStorageService"/>.

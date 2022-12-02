@@ -2,7 +2,7 @@
 
 using Kayrun.Client.Services;
 
-namespace Kayrun.ViewModels.Services.KeyStorageService
+namespace Kayrun.Services.KeyStorageService
 {
     /// <summary>
     /// An interface for a service to manage keys.

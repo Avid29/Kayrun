@@ -2,7 +2,7 @@
 
 using System.Threading.Tasks;
 
-namespace Kayrun.ViewModels.Services.StorageService
+namespace Kayrun.Services.StorageService
 {
     /// <summary>
     /// An interface for a service to store files.

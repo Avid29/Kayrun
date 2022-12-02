@@ -5,7 +5,7 @@ using Kayrun.Client.Enums;
 using Kayrun.Client.Helpers;
 using System.Threading.Tasks;
 
-namespace Kayrun.ViewModels.Services.MessengerService
+namespace Kayrun.Services.MessengerService
 {
     /// <summary>
     /// An interface for a service to send RESTful requests.

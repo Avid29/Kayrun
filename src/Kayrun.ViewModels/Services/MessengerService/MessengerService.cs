@@ -6,7 +6,7 @@ using Kayrun.Client;
 using Kayrun.Client.Enums;
 using Kayrun.Client.Helpers;
 
-namespace Kayrun.ViewModels.Services.MessengerService
+namespace Kayrun.Services.MessengerService
 {
     public class MessengerService : IMessengerService
     {
