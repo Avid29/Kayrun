@@ -23,5 +23,10 @@
     <PackageReference Include="SkiaSharp.Views.Uno.WinUI" Version="2.88.3" />
     <PackageReference Include="SkiaSharp.Skottie" Version="2.88.3" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Kayrun.API\Kayrun.API.csproj" />
+    <ProjectReference Include="..\..\..\Kayrun.Client\Kayrun.Client.csproj" />
+    <ProjectReference Include="..\..\..\Kayrun.ViewModels\Kayrun.ViewModels.csproj" />
+  </ItemGroup>
   <Import Project="..\..\Kayrun.Shared\Kayrun.Shared.projitems" Label="Shared" />
 </Project>

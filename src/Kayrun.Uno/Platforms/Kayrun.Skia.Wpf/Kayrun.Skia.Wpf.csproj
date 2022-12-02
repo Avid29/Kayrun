@@ -31,5 +31,10 @@
   <ItemGroup>
     <Content Include="Assets\Fonts\uno-fluentui-assets.ttf" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Kayrun.API\Kayrun.API.csproj" />
+    <ProjectReference Include="..\..\..\Kayrun.Client\Kayrun.Client.csproj" />
+    <ProjectReference Include="..\..\..\Kayrun.ViewModels\Kayrun.ViewModels.csproj" />
+  </ItemGroup>
   <Import Project="..\..\Kayrun.Shared\Kayrun.Shared.projitems" Label="Shared" />
 </Project>
