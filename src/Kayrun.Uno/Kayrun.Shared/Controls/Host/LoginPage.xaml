@@ -9,10 +9,11 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <StackPanel>
+    <StackPanel VerticalAlignment="Center">
         <TextBox Text="{x:Bind ViewModel.Email, Mode=TwoWay}" PlaceholderText="Email"
-                 MaxWidth="480" Margin="12,0"
-                 HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
-        <Button Command="{x:Bind ViewModel.LoginCommand, Mode=OneWay}"/>
+                 MaxWidth="480" Margin="12,0,12,8"
+                 HorizontalAlignment="Stretch"/>
+        <Button Content="Login" HorizontalAlignment="Center"
+                Command="{x:Bind ViewModel.LoginCommand, Mode=OneWay}"/>
     </StackPanel>
 </UserControl>

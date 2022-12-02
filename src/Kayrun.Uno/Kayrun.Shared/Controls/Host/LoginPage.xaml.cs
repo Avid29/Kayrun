@@ -1,4 +1,5 @@
-﻿using Kayrun.ViewModels;
+﻿// Adam Dernis 2022
+
 using Kayrun.ViewModels.Host;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;

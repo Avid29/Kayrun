@@ -33,8 +33,15 @@ namespace Kayrun.Services.StorageService
         /// <inheritdoc/>
         public async Task<bool> HasFile(string filename)
         {
-            var file = await _storageFolder.GetFileAsync(filename);
-            return file is not null;
+            try
+            {
+                var file = await _storageFolder.GetFileAsync(filename);
+                return file is not null;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <inheritdoc/>

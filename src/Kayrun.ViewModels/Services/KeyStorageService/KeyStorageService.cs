@@ -5,6 +5,7 @@ using Kayrun.API.Models.Keys;
 using Kayrun.Client.Enums;
 using Kayrun.Client.Helpers;
 using Kayrun.Client.RSA;
+using Kayrun.Client.Services;
 using Kayrun.Services.StorageService;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace Kayrun.Services.KeyStorageService
     /// <summary>
     /// An implementation of the <see cref="IKeyStorageService"/>.
     /// </summary>
-    public class KeyStorageService : IKeyStorageService
+    public class KeyStorageService : IKeyStorage
     {
         private const string PublicKey = "public.key";
         private const string PrivateKey = "private.key";

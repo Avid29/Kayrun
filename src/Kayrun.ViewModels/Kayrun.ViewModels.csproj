@@ -16,8 +16,4 @@
 	  <ProjectReference Include="..\Kayrun.Client\Kayrun.Client.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Messages\" />
-	</ItemGroup>
-
 </Project>

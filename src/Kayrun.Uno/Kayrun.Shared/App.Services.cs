@@ -1,13 +1,15 @@
 ﻿// Adam Dernis 2022
 
-using System;
+using CommunityToolkit.Mvvm.Messaging;
 using Kayrun.Client;
+using Kayrun.Client.Services;
 using Kayrun.Services.KeyStorageService;
 using Kayrun.Services.MessengerService;
 using Kayrun.Services.StorageService;
 using Kayrun.ViewModels;
 using Kayrun.ViewModels.Host;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Kayrun
 {
@@ -17,8 +19,9 @@ namespace Kayrun
         {
             // Register Services
             return new ServiceCollection()
+            .AddSingleton<IMessenger, WeakReferenceMessenger>()
             .AddSingleton<IStorageService, StorageService>()
-            .AddSingleton<IKeyStorageService, KeyStorageService>()
+            .AddSingleton<IKeyStorage, KeyStorageService>()
             .AddSingleton<IMessengerService, MessengerService>()
 
             // ViewModels

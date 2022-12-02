@@ -1,33 +1,23 @@
 ﻿// Adam Dernis 2022
 
-using CommunityToolkit.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using Kayrun.Client.RSA;
-using Kayrun.Services.KeyStorageService;
-using Kayrun.Services.MessengerService;
+using CommunityToolkit.Mvvm.Messaging;
+using Kayrun.Messages;
 using Kayrun.ViewModels.Enums;
-using System.Threading.Tasks;
 
 namespace Kayrun.ViewModels
 {
     public partial class WindowViewModel : ObservableRecipient
     {
-        private readonly IMessengerService _messengerService;
-        private readonly IKeyStorageService _keyStorageService;
         private WindowHostState _windowState;
 
-        public WindowViewModel(IMessengerService messengerService, IKeyStorageService keyStorageService)
+        public WindowViewModel(
+            IMessenger messenger)
         {
             WindowState = WindowHostState.LoggedOut;
-            _messengerService = messengerService;
-            _keyStorageService = keyStorageService;
 
-            LoginCommand = new AsyncRelayCommand<string>(async x =>
-            {
-                Guard.IsNotNull(x);
-                await Login(x);
-            });
+            messenger.Register<WindowStateChangedMessage>(this,
+                (_, e) => WindowState = e.WindowState);
         }
 
         /// <summary>
@@ -48,7 +38,7 @@ namespace Kayrun.ViewModels
         /// <summary>
         /// Gets a value indicating whether or not the app is logged out.
         /// </summary>
-        public bool IsLoggedOut => _windowState == WindowHostState.LoggedOut;
+        public bool IsLoggedOut => _windowState is WindowHostState.LoggedOut;
 
     }
 }

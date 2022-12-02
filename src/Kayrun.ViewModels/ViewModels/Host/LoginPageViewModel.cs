@@ -1,7 +1,11 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿// Adam Dernis 2022
+
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Kayrun.Client.RSA;
-using Kayrun.Services.KeyStorageService;
+using Kayrun.Client.Services;
+using Kayrun.Messages;
 using Kayrun.Services.MessengerService;
 using Kayrun.ViewModels.Enums;
 using System.Threading.Tasks;
@@ -10,17 +14,22 @@ namespace Kayrun.ViewModels.Host
 {
     public class LoginPageViewModel : ObservableRecipient
     {
+        private readonly IMessenger _messenger;
         private readonly IMessengerService _messengerService;
-        private readonly IKeyStorageService _keyStorageService;
+        private readonly IKeyStorage _keyStorageService;
 
         private string _email;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LoginPageViewModel"/> class.
         /// </summary>
-        public LoginPageViewModel(IMessengerService messengerService, IKeyStorageService keyStorageService)
+        public LoginPageViewModel(
+            IMessenger messenger,
+            IMessengerService messengerService,
+            IKeyStorage keyStorageService)
         {
             _email = string.Empty;
+            _messenger = messenger;
             _messengerService = messengerService;
             _keyStorageService = keyStorageService;
 
@@ -40,8 +49,7 @@ namespace Kayrun.ViewModels.Host
 
         public async Task Login(string email)
         {
-            // TODO: Send login status messages
-            //WindowState = WindowHostState.Loading;
+            _messenger.Send(new WindowStateChangedMessage(WindowHostState.Loading));
 
             // Check for existing private key
             var key = await _keyStorageService.LoadPrivateKey(email);
@@ -60,7 +68,7 @@ namespace Kayrun.ViewModels.Host
                 await _messengerService.UploadKey(email);
             }
 
-            //WindowState = WindowHostState.LoggedIn;
+            _messenger.Send(new WindowStateChangedMessage(WindowHostState.LoggedIn));
         }
     }
 }
