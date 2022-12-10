@@ -1,39 +1,36 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿// Adam Dernis 2022
+
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
-using Kayrun.Bindables;
-using Kayrun.Services.MessageStorageService;
+using Kayrun.Bindables.Chats;
+using Kayrun.Services.ChatStorageService;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Kayrun.ViewModels.Panels
 {
     public class ChatsViewModel : ObservableRecipient
     {
-        private readonly IMessageStorageService _messageStorageService;
+        private readonly IChatStorageService _chatStorageService;
 
         public ChatsViewModel(
             IMessenger messenger,
-            IMessageStorageService messageStorageService)
+            IChatStorageService chatStorageService)
         {
-            Chats = new ObservableCollection<BindableChat>();
-            _messageStorageService = messageStorageService;
+            OutgoingChats = new ObservableCollection<BindableOutgoingChat>();
+            _chatStorageService = chatStorageService;
 
-            //_messageStorageService.CreateChat("ace4971");
-
-
-            
             _ = LoadChats();
         }
 
-        public ObservableCollection<BindableChat> Chats { get; }
+        public ObservableCollection<BindableOutgoingChat> OutgoingChats { get; }
 
         private async Task LoadChats()
         {
-            var chats = (await _messageStorageService.LoadChats()).Select(x => new BindableChat(x));
+            var chats = await _chatStorageService.LoadOutgoingChats();
             foreach (var chat in chats)
             {
-                Chats.Add(chat);
+                OutgoingChats.Add(chat);
             }
         }
     }

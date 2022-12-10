@@ -26,6 +26,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Panels\ChatsPanel.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Panels\MessagePanel.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Shell\Shell.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataTemplates\ChatTemplates.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\StorageService\StorageService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +47,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Controls\Shell\Shell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)DataTemplates\ChatTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Resources\Icons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\ButtonStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

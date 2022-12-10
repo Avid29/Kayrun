@@ -1,34 +1,48 @@
 ﻿// Adam Dernis 2022
 
 using CommunityToolkit.Diagnostics;
+using CommunityToolkit.Mvvm.Messaging;
 using Kayrun.API.Models.Messages;
+using Kayrun.Bindables.Chats;
+using Kayrun.Client;
+using Kayrun.Services.MessengerService;
 using Kayrun.Services.StorageService;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Kayrun.Services.MessageStorageService
+namespace Kayrun.Services.ChatStorageService
 {
-    public class MessageStorageService : IMessageStorageService
+    public class ChatStorageService : IChatStorageService
     {
         private readonly IStorageService _storageService;
+        private readonly IMessenger _messenger;
+        private readonly IMessengerService _messengerService;
+        private readonly KayrunClient _kayrunClient;
 
-        public MessageStorageService(IStorageService storageService)
+        public ChatStorageService(
+            IStorageService storageService,
+            IMessenger messenger,
+            IMessengerService messengerService,
+            KayrunClient kayrunClient)
         {
+            _messenger = messenger;
+            _messengerService = messengerService;
             _storageService = storageService;
+            _kayrunClient = kayrunClient;
         }
 
         /// <inheritdoc/>
-        public async Task CreateChat(string email)
+        public async Task<BindableOutgoingChat> CreateOutgoingChat(string email)
         {
             await _storageService.CreateFile(Pathify(email));
+            return InitOutgoingChat(email);
         }
 
-        /// <inheritdoc/>
-        public async Task<string[]> LoadChats()
+        public async Task<BindableOutgoingChat[]> LoadOutgoingChats()
         {
             var logs = await _storageService.QueryType(".log");
-            return logs;
+            return logs.Select(InitOutgoingChat).ToArray();
         }
 
         /// <inheritdoc/>
@@ -56,5 +70,8 @@ namespace Kayrun.Services.MessageStorageService
 
         private string Pathify(string email)
             => $"{email}.log";
+
+        private BindableOutgoingChat InitOutgoingChat(string email)
+            => new(_messenger, _messengerService, _kayrunClient, email);
     }
 }

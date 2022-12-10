@@ -1,22 +1,23 @@
 ﻿// Adam Dernis 2022
 
-using System.Threading.Tasks;
 using Kayrun.API.Models.Messages;
+using Kayrun.Bindables.Chats;
+using System.Threading.Tasks;
 
-namespace Kayrun.Services.MessageStorageService
+namespace Kayrun.Services.ChatStorageService
 {
-    public interface IMessageStorageService
+    public interface IChatStorageService
     {
         /// <summary>
         /// Creates a chat history for messages to be saved to and loaded from.
         /// </summary>
         /// <param name="email">The email of the chat.</param>
-        Task CreateChat(string email);
+        Task<BindableOutgoingChat> CreateOutgoingChat(string email);
 
         /// <summary>
-        /// Loads a list of chats.
+        /// Loads a list of outgoing chats.
         /// </summary>
-        Task<string[]> LoadChats();
+        Task<BindableOutgoingChat[]> LoadOutgoingChats();
 
         /// <summary>
         /// Loads message history with a certain email.

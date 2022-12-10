@@ -29,7 +29,7 @@
             </ListView.Header>
         </ListView>
 
-        <ListView ItemsSource="{x:Bind ViewModel.Chats, Mode=OneWay}">
+        <ListView ItemsSource="{x:Bind ViewModel.OutgoingChats, Mode=OneWay}" ItemTemplate="{StaticResource OutgoingChatTemplate}">
             <ListView.Header>
                 <Grid Height="24">
                     <Grid.ColumnDefinitions>
@@ -45,11 +45,6 @@
                                VerticalAlignment="Bottom" HorizontalAlignment="Stretch"/>
                 </Grid>
             </ListView.Header>
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="bindables:BindableChat">
-                    <TextBlock Text="{x:Bind Email, Mode=OneWay}"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
         </ListView>
 
     </StackPanel>
