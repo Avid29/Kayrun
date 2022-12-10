@@ -10,7 +10,7 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <StackPanel>
+    <StackPanel Background="{ThemeResource SecondaryBackground}">
         <ListView>
             <ListView.Header>
                 <Grid Height="24">
@@ -29,7 +29,13 @@
             </ListView.Header>
         </ListView>
 
-        <ListView ItemsSource="{x:Bind ViewModel.OutgoingChats, Mode=OneWay}" ItemTemplate="{StaticResource OutgoingChatTemplate}">
+        <ListView x:Name="OutgoingChatList"
+                  ItemsSource="{x:Bind ViewModel.OutgoingChats, Mode=OneWay}"
+                  ItemTemplate="{StaticResource OutgoingChatTemplate}"
+                  ItemContainerStyle="{StaticResource ChatListItemStyle}"
+                  SelectionMode="None"
+                  IsItemClickEnabled="True"
+                  ItemClick="ChatList_ItemClick">
             <ListView.Header>
                 <Grid Height="24">
                     <Grid.ColumnDefinitions>

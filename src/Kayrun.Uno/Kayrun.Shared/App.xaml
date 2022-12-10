@@ -11,10 +11,12 @@
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
 
                 <!--Resources-->
+                <ResourceDictionary Source="Resources/Brushes.xaml"/>
                 <ResourceDictionary Source="Resources/Icons.xaml"/>
                 
                 <!--Styles-->
                 <ResourceDictionary Source="Styles/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="Styles/ListViewItemStyles.xaml"/>
 
                 <!--Data Templates-->
                 <dt:ChatTemplates/>

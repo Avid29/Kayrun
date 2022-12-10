@@ -20,6 +20,6 @@
         <panels:ChatsPanel/>
 
         <!--Content-->
-        <panels:MessagePanel/>
+        <panels:MessagePanel Grid.Column="1"/>
     </Grid>
 </UserControl>

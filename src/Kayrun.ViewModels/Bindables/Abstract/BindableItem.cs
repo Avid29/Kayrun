@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using Kayrun.Client;
 using Kayrun.Services.MessengerService;
 
-namespace Kayrun.Bindables
+namespace Kayrun.Bindables.Abstract
 {
     /// <summary>
     /// An item that can be bound to the UI.

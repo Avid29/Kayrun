@@ -5,26 +5,30 @@
     xmlns:bchats="using:Kayrun.Bindables.Chats">
 
     <DataTemplate x:Key="OutgoingChatTemplate" x:DataType="bchats:BindableOutgoingChat">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-            
-            <TextBlock Text="{x:Bind Email, Mode=OneWay}"/>
+        <Grid Height="32">
+            <Grid Visibility="{x:Bind IsSelected, Mode=OneWay}" Opacity=".2" Background="{ThemeResource SystemControlBackgroundAccentBrush}"/>
 
-            <StackPanel Orientation="Horizontal" Grid.Column="1">
-                <Button Width="24" Height="24" Style="{StaticResource SimpleRevealButtonStyle}"
+            <Grid Padding="8,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="{x:Bind Email, Mode=OneWay}" VerticalAlignment="Center"/>
+
+                <StackPanel Orientation="Horizontal" Grid.Column="1">
+                    <Button Width="24" Height="24" Style="{StaticResource SimpleRevealButtonStyle}"
                         ToolTipService.ToolTip="Refresh Public Key"
                         Command="{x:Bind RefreshPublicKeyCommand, Mode=OneWay}">
-                    <FontIcon Glyph="{StaticResource KeyRefreshIcon}" FontSize="12"/>
-                </Button>
-                
-                <Button Width="24" Height="24" Style="{StaticResource SimpleRevealButtonStyle}"
+                        <FontIcon Glyph="{StaticResource KeyRefreshIcon}" FontSize="12"/>
+                    </Button>
+
+                    <Button Width="24" Height="24" Style="{StaticResource SimpleRevealButtonStyle}"
                         ToolTipService.ToolTip="Refresh Messages">
-                    <FontIcon Glyph="{StaticResource RefreshIcon}" FontSize="12"/>
-                </Button>
-            </StackPanel>
+                        <FontIcon Glyph="{StaticResource RefreshIcon}" FontSize="12"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
         </Grid>
     </DataTemplate>
     
