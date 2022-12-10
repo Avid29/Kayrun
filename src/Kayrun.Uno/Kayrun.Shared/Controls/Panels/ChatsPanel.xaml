@@ -45,6 +45,22 @@
 
                     <TextBlock Text="Outgoing" Margin="8,0,0,0" FontSize="16" VerticalAlignment="Center"/>
                     <Button Grid.Column="1" Padding="4" VerticalAlignment="Center">
+                        <Button.Flyout>
+                            <Flyout>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBox x:Name="EmailDraft" PlaceholderText="email" Width="216"/>
+                                    <Button Grid.Column="1" Width="32" Style="{StaticResource SimpleRevealButtonStyle}"
+                                            Command="{x:Bind ViewModel.CreateChatCommand}" CommandParameter="{Binding ElementName=EmailDraft, Path=Text, Mode=OneWay}">
+                                        <FontIcon Glyph="{StaticResource AcceptIcon}" FontSize="12"/>
+                                    </Button>
+                                </Grid>
+                            </Flyout>
+                        </Button.Flyout>
                         <FontIcon Glyph="" FontSize="16"/>
                     </Button>
                     <Rectangle Fill="#50FFFFFF" Height="1" Grid.ColumnSpan="2"

@@ -1,13 +1,16 @@
 ﻿// Adam Dernis 2022
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Kayrun.Bindables.Chats;
 using Kayrun.Bindables.Chats.Abstract;
 using Kayrun.Client;
+using Kayrun.Messages;
 using Kayrun.Messages.Navigation;
 using Kayrun.Services.ChatStorageService;
 using Kayrun.Services.MessengerService;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
@@ -34,6 +37,10 @@ namespace Kayrun.ViewModels.Panels
             _chatStorageService = chatStorageService;
 
             OutgoingChats = new ObservableCollection<BindableOutgoingChat>();
+            CreateChatCommand = new RelayCommand<string>(x => _ = CreateChat(x!));
+
+            _messenger.Register<ChatCreatedMessage>(this, (_, m) => AddChat(m.Email));
+
             _ = LoadChats();
         }
 
@@ -59,13 +66,27 @@ namespace Kayrun.ViewModels.Panels
 
         public ObservableCollection<BindableOutgoingChat> OutgoingChats { get; }
 
+        public RelayCommand<string> CreateChatCommand { get; }
+
+        private async Task CreateChat(string email)
+        {
+            await _chatStorageService.CreateOutgoingChat(email);
+
+            _messenger.Send(new ChatCreatedMessage(email));
+        }
+
         private async Task LoadChats()
         {
             var chats = await _chatStorageService.LoadOutgoingChats();
             foreach (var chat in chats)
             {
-                OutgoingChats.Add(new BindableOutgoingChat(_messenger, _messengerService, _kayrunClient, chat));
+                AddChat(chat);
             }
+        }
+
+        private void AddChat(string email)
+        {
+            OutgoingChats.Add(new BindableOutgoingChat(_messenger, _messengerService, _kayrunClient, email));
         }
     }
 }
