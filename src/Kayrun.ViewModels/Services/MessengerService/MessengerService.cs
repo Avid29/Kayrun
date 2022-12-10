@@ -40,14 +40,15 @@ namespace Kayrun.Services.MessengerService
         {
             var error = await _client.SendMessage(email, plaintext);
 
-            if (error is Error.None)
-            {
-                await _chatStorageService.SaveMessage(new OutgoingMessage
-                {
-                    Email = email,
-                    Content = plaintext,
-                });
-            }
+            // TODO: Chat history
+            //if (error is Error.None)
+            //{
+            //    await _chatStorageService.SaveMessage(new OutgoingMessage
+            //    {
+            //        Email = email,
+            //        Content = plaintext,
+            //    });
+            //}
 
             return error;
         }
