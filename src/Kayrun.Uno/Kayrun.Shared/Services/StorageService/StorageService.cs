@@ -66,7 +66,7 @@ namespace Kayrun.Services.StorageService
             // Opens and deserializes the file, then closes it
             var file = await _storageFolder.GetFileAsync(filename);
             await using var stream = await file.OpenStreamForReadAsync();
-            return await JsonSerializer.DeserializeAsync<T?>(stream, _options);
+            return await JsonSerializer.DeserializeAsync<T>(stream, _options);
         }
 
         /// <inheritdoc/>

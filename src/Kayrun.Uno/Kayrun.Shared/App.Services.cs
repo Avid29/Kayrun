@@ -32,8 +32,7 @@ namespace Kayrun
             .AddSingleton<LoginPageViewModel>()
             .AddSingleton<ChatsViewModel>()
             .AddSingleton<MessagesViewModel>()
-
-            // SubPages
+            .AddSingleton<MessageBoxViewModel>()
 
             // Other
             .AddSingleton<KayrunClient>()

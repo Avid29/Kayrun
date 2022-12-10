@@ -2,39 +2,54 @@
 
 using System.Threading.Tasks;
 using Kayrun.API.Models.Keys;
+using Kayrun.API.Models.Messages;
 using Kayrun.Client;
 using Kayrun.Client.Enums;
 using Kayrun.Client.Helpers;
+using Kayrun.Services.ChatStorageService;
 
 namespace Kayrun.Services.MessengerService
 {
     public class MessengerService : IMessengerService
     {
+        private readonly IChatStorageService _chatStorageService;
         private readonly KayrunClient _client;
 
-        public MessengerService(KayrunClient client)
+        public MessengerService(IChatStorageService chatStorageService, KayrunClient client)
         {
+            _chatStorageService = chatStorageService;
             _client = client;
         }
 
-        public Task<RoE<KeyEntry, Error>> DownloadKey(string email)
+        public async Task<RoE<KeyEntry, Error>> DownloadKey(string email)
         {
-            return _client.DownloadKey(email);
+            return await _client.DownloadKey(email);
         }
 
-        public Task<Error> UploadKey(string email)
+        public async Task<Error> UploadKey(string email)
         {
-            return _client.UploadKey(email);
+            return await _client.UploadKey(email);
         }
 
-        public Task<RoE<string, Error>> GetMessage(string email)
+        public async Task<RoE<string, Error>> GetMessage(string email)
         {
-            return _client.GetMessage(email);
+            return await _client.GetMessage(email);
         }
 
-        public Task<Error> SendMessage(string email, string plaintext)
+        public async Task<Error> SendMessage(string email, string plaintext)
         {
-            return _client.SendMessage(email, plaintext);
+            var error = await _client.SendMessage(email, plaintext);
+
+            if (error is Error.None)
+            {
+                await _chatStorageService.SaveMessage(new OutgoingMessage
+                {
+                    Email = email,
+                    Content = plaintext,
+                });
+            }
+
+            return error;
         }
     }
 }

@@ -5,11 +5,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="using:Kayrun.Controls.Panels"
+    xmlns:convert="using:Kayrun.Converters"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
 
     <Grid Background="{ThemeResource PrimaryBackground}">
-
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        
+        <local:MessageBox Grid.Row="1" Visibility="{x:Bind ViewModel.IsOutgoingChat, Mode=OneWay}"/>
     </Grid>
 </UserControl>

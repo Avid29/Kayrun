@@ -1,7 +1,6 @@
 ﻿// Adam Dernis 2022
 
 using Kayrun.API.Models.Messages;
-using Kayrun.Bindables.Chats;
 using System.Threading.Tasks;
 
 namespace Kayrun.Services.ChatStorageService
@@ -12,12 +11,12 @@ namespace Kayrun.Services.ChatStorageService
         /// Creates a chat history for messages to be saved to and loaded from.
         /// </summary>
         /// <param name="email">The email of the chat.</param>
-        Task<BindableOutgoingChat> CreateOutgoingChat(string email);
+        Task CreateOutgoingChat(string email);
 
         /// <summary>
         /// Loads a list of outgoing chats.
         /// </summary>
-        Task<BindableOutgoingChat[]> LoadOutgoingChats();
+        Task<string[]> LoadOutgoingChats();
 
         /// <summary>
         /// Loads message history with a certain email.
